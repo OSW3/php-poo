@@ -2,13 +2,67 @@
 
 class Voiture
 {
+    /**
+     * Vehicule brand
+     *
+     * @var string
+     */
     private $brand;
+
+    /**
+     * Vehicule model
+     *
+     * @var string
+     */
     private $model;
+
+    /**
+     * Vehicule color
+     *
+     * @var string
+     */
     private $color;
-    private $speed;
-    private $maxSpeed;
-    private $isStarted;
+
+    /**
+     * Cruise speed
+     *
+     * @var integer
+     */
+    private $speed = 0;
+
+    /**
+     * Maximum speed
+     *
+     * @var integer
+     */
+    private $maxSpeed = 0;
+
+    /**
+     * Vehicule status
+     *
+     * @var boolean
+     */
+    private $isStarted = false;
+
+    /**
+     * Driver object
+     *
+     * @var Personne
+     */
     private $driver;
+
+    /**
+     * Vehicule direction
+     *
+     * @var string
+     * @default stright
+     * @values straight | right | left
+     */
+    private $direction = "straight";
+
+
+    // Methods
+    // --
 
     public function __construct(string $brand, string $model, string $color)
     {
@@ -19,28 +73,49 @@ class Voiture
 
     public function start()
     {
-        # code...
+        if ($this->getDriver() && !$this->getIsStarted())
+        {
+            $this->setIsStarted( true );
+        }
     }
 
     public function stop()
     {
-        # code...
+        if ($this->getSpeed() == 0)
+        {
+            $this->setIsStarted( false );
+        }
     }
 
-    public function accelerate()
+    public function accelerate(int $speed): self
     {
-        # code...
+        if ($this->getIsStarted())
+        {
+            $this->setSpeed( $this->getSpeed() + $speed );
+        }
+
+        return $this;
     }
 
-    public function decelerate()
+    public function decelerate(int $speed): self
     {
-        # code...
+        $this->setSpeed( $this->getSpeed() - $speed );
+
+        return $this;
     }
 
-    public function turn()
+    public function turn(string $direction): self
     {
-        # code...
+        if ($this->getSpeed() <= 30)
+        {
+            $this->setDirection( $direction );
+        }        
+        return $this;
     }
+
+
+    // Getter / Setter
+    // --
 
     /**
      * Get the value of brand
@@ -55,7 +130,7 @@ class Voiture
      *
      * @return  self
      */ 
-    private function setBrand($brand)
+    private function setBrand(string $brand): self
     {
         $this->brand = $brand;
 
@@ -75,7 +150,7 @@ class Voiture
      *
      * @return  self
      */ 
-    private function setModel($model)
+    private function setModel(string $model): self
     {
         $this->model = $model;
 
@@ -95,10 +170,19 @@ class Voiture
      *
      * @return  self
      */ 
-    private function setSpeed($speed)
+    private function setSpeed(int $speed): self
     {
         $this->speed = $speed;
 
+        if ($this->speed < 0)
+        {
+            $this->speed = 0;
+        }
+
+        if ($this->getMaxSpeed() < $this->speed)
+        {
+            $this->setMaxSpeed( $this->speed );
+        }
         return $this;
     }
 
@@ -115,7 +199,7 @@ class Voiture
      *
      * @return  self
      */ 
-    private function setMaxSpeed($maxSpeed)
+    private function setMaxSpeed(int $maxSpeed): self
     {
         $this->maxSpeed = $maxSpeed;
 
@@ -135,7 +219,7 @@ class Voiture
      *
      * @return  self
      */ 
-    private function setIsStarted($isStarted)
+    private function setIsStarted(bool $isStarted): self
     {
         $this->isStarted = $isStarted;
 
@@ -155,7 +239,7 @@ class Voiture
      *
      * @return  self
      */ 
-    public function setDriver($driver)
+    public function setDriver(?Personne $driver): self
     {
         $this->driver = $driver;
 
@@ -175,9 +259,29 @@ class Voiture
      *
      * @return  self
      */ 
-    private function setColor($color)
+    private function setColor(string $color): self
     {
         $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of direction
+     */ 
+    public function getDirection()
+    {
+        return $this->direction;
+    }
+
+    /**
+     * Set the value of direction
+     *
+     * @return  self
+     */ 
+    public function setDirection(string $direction): self
+    {
+        $this->direction = $direction;
 
         return $this;
     }
