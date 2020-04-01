@@ -3,6 +3,7 @@ include "Voiture.php";
 include "Personne.php";
 
 $date = new DateTime;
+
 $person1 = new Personne("Michel", "Durant", $date->setDate(1959, 5, 22 ));
 $person2 = new Personne("Jean", "Dupont", $date->setDate(1970, 12, 3 ));
 $person3 = new Personne("Janine", "Bidule", $date->setDate(1962, 2, 28 ));

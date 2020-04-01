@@ -43,7 +43,7 @@ class Personne
      *
      * @return  self
      */ 
-    public function setFirstname($firstname)
+    public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
 
@@ -63,7 +63,7 @@ class Personne
      *
      * @return  self
      */ 
-    public function setLastname($lastname)
+    public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
 
@@ -83,7 +83,7 @@ class Personne
      *
      * @return  self
      */ 
-    public function setBirthday($birthday)
+    public function setBirthday(DateTime $birthday): self
     {
         $this->birthday = $birthday;
 
