@@ -41,8 +41,9 @@ class Personne
     /**
      * Set the value of firstname
      *
-     * @return  self
-     */ 
+     * @param string $firstname
+     * @return self
+     */
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
