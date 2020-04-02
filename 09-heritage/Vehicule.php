@@ -13,11 +13,16 @@ abstract class Vehicule
     {
         $this->setBrand($brand);
     }
-
-
-    public function start()
+    
+    /**
+     * Start a vehicule
+     *
+     * @return self
+     */
+    public function start(): self
     {
         $this->setIsStarted( true );
+        return $this;
     }
 
     public function stop()

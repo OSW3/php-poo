@@ -20,6 +20,7 @@ $car1 = new Voiture("Tesla");
 echo $car1->getType()." : ";
 echo $car1->getBrand()."<br>";
 echo Voiture::WHEELS."<br>";
+$car1->start();
 
 $truck1 = new Camion("Mack");
 echo $truck1->getType()." : ";
