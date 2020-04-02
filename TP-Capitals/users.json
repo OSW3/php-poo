@@ -1,0 +1,17 @@
+[
+    {
+        "firstname": "Bruce",
+        "lastname": "WAYNE",
+        "powers": [
+            "Money"
+        ]
+    },
+    {
+        "firstname": "Clark",
+        "lastname": "KENT",
+        "powers": [
+            "Lazer eyes",
+            "Flight"
+        ]
+    }
+]
